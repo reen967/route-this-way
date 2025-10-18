@@ -1,0 +1,14 @@
+{
+  "appId": "app.lovable.0da711dfc96b4f18a9b9f43da547e282",
+  "appName": "QuickRoute",
+  "webDir": "dist",
+  "server": {
+    "url": "https://0da711df-c96b-4f18-a9b9-f43da547e282.lovableproject.com?forceHideBadge=true",
+    "cleartext": true
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  }
+}
