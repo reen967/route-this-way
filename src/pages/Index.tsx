@@ -27,7 +27,7 @@ const Index = () => {
 
   const handleSelectMode = (mode: TransportMode) => {
     if (selectedLocation) {
-      openNavigation(selectedLocation.latitude, selectedLocation.longitude, mode);
+      openNavigation(selectedLocation.latitude, selectedLocation.longitude, selectedLocation.address, mode);
     }
   };
 

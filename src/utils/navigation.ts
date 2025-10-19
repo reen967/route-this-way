@@ -3,14 +3,15 @@ import { TransportMode } from '@/types/location';
 export const openNavigation = (
   latitude: number,
   longitude: number,
+  address: string,
   mode: TransportMode
 ): void => {
-  const destination = `${latitude},${longitude}`;
+  const coordinateDestination = `${latitude},${longitude}`;
 
   if (mode === 'transit') {
-    // Try Google Maps first for public transit
-    const googleMapsApp = `comgooglemaps://?daddr=${destination}&directionsmode=transit`;
-    const googleMapsWeb = `https://www.google.com/maps/dir/?api=1&destination=${destination}&travelmode=transit`;
+    // Try Google Maps first for public transit - use address for better routing
+    const googleMapsApp = `comgooglemaps://?daddr=${encodeURIComponent(address)}&directionsmode=transit`;
+    const googleMapsWeb = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}&travelmode=transit`;
     
     // Try to open Google Maps app, fallback to web
     window.location.href = googleMapsApp;
@@ -22,7 +23,7 @@ export const openNavigation = (
   } else {
     // Use Apple Maps for walking and cycling
     const directionFlag = mode === 'walk' ? 'w' : 'b'; // w = walking, b = bicycling
-    const appleMapsUrl = `http://maps.apple.com/?daddr=${destination}&dirflg=${directionFlag}`;
+    const appleMapsUrl = `http://maps.apple.com/?daddr=${coordinateDestination}&dirflg=${directionFlag}`;
     window.location.href = appleMapsUrl;
   }
 };
